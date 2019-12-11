@@ -19,3 +19,4 @@ object Main extends App {
   def sqrt(x: Double) = fixedPoint(averageDamp(y => x/y))(1)
   sqrt(9)
 }
+//This code explain the highest level of abstraction in scala with carrying ability
