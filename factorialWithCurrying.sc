@@ -9,3 +9,4 @@ object factorialWithCurrying {
   val f = fact(5)
   print(f)//120
 }
+//Currying is a function into in another function or it is function returns function.
