@@ -44,4 +44,4 @@ class Rational(x: Int, y: Int){
     numer/g +"/"+ denom/g
   }
 }
-//in this class showed how create constructors and requirment
+//this class shows you how to create constructors and requirements
