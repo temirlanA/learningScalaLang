@@ -3,9 +3,9 @@ object Main extends App {
   val y = new Rational(5,7)
   val z = new Rational(3,2)
 
-  println(x.sub(y).sub(z).toString)
-  println(x.less(y).toString)
-  println(x.max(y).toString)
+  println(x - y - z toString)//x.sub(y).sub(z) old
+  println(x < y toString)//x.less(y)
+  println(x.max(y).toString)//didn't change 
   println(new Rational(2).toString)
 }
 
@@ -23,25 +23,27 @@ class Rational(x: Int, y: Int){
 
   def numer = x//get y and set to numer
   def denom = y
-  def less(that:Rational)=
-    numer * that.denom < that.numer * denom
+  def <(that:Rational)=
+    numer * that.denom < that.numer * denom// i changed less to <
   def max (that: Rational) =
-    if(this.less(that))
+    if(this < that)
       that
     else
       that
-  def add(that: Rational) =
+  def +(that: Rational) =
     new Rational(
       numer * that.denom + that.numer * denom,
       denom * that.denom
     )// constructor for method of add
-  def neg: Rational = new Rational(-numer,denom)
+  def unary_- : Rational = new Rational(-numer,denom)//i changed neg to unary_-
 
-  def sub(that: Rational) = add(that.neg)
+  def -(that: Rational) = this + that unary_- //i changed sub to -
 
   override def toString = {
     val g = gcd(numer,denom)
     numer/g +"/"+ denom/g
   }
 }
-//this class shows you how to create constructors and requirements
+//1.0 this class shows you how to create constructors and requirements
+//1.1 i changed strings to signs because Int != Rational and types of Rational can't to use like integer numbers like a+b
+//and i fixed that things
