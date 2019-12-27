@@ -1,0 +1,43 @@
+package Main
+
+import scala.collection.immutable.TreeMap
+import scala.collection.mutable
+
+object Main extends App {
+  val mutaSet = mutable.Set(1, 2, 3)
+  println(mutaSet)
+
+
+  val text = "See Spot run! Run, spot. Run!"
+  val wordsArray = text.split("[ !,.]+")
+  println(wordsArray.toList)
+
+  val map = mutable.Map.empty[String,Int]
+  map("Hello") = 1
+  map("There") = 2
+  println(map)
+
+  def countWords(text: String):mutable.Map[String,Int] = {
+    var Oldcount = 0
+    val counts = mutable.Map.empty[String, Int]
+    for (rawWord <- text.split("[ ,!.]+")) {
+      val word = rawWord.toLowerCase
+      if (rawWord.contains(word)) {
+        Oldcount = Oldcount + 1
+        counts(word) = Oldcount
+      }
+    }
+
+    counts
+  }
+
+  println(countWords(text))
+
+
+  var tm = TreeMap(3 -> 'x', 1 -> 'x', 4 -> 'x')//sorted Map
+  tm += (2 -> 'x')
+  println(tm)
+}
+
+
+
