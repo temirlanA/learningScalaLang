@@ -37,6 +37,26 @@ object Main extends App {
   var tm = TreeMap(3 -> 'x', 1 -> 'x', 4 -> 'x')//sorted Map
   tm += (2 -> 'x')
   println(tm)
+  
+  
+  val Mutablepeople = scala.collection.mutable.Set("Nancy", "Jane")
+  println(Mutablepeople)
+  Mutablepeople += "Bob"
+  println(Mutablepeople)
+  Mutablepeople -= "Nancy"
+  val people = Set.empty ++ Mutablepeople
+  println(people)
+  
+  
+  var capital = Map("US" -> "Washington", "France" -> "Paris")
+  capital += ("Japan" -> "Tokyo")
+  println(capital("France"))
+  
+  val colors = List("blue", "yellow", "red", "green")
+  val treeSet = scala.collection.immutable.TreeSet[String]() ++ colors
+  println(treeSet)
+  println(treeSet.toList)
+  println(treeSet.toArray)
 }
 
 
