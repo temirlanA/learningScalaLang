@@ -1,0 +1,27 @@
+import scala.language.implicitConversions
+implicit def doubleToInt(x: Double) = x.toInt
+val i: Int = 3.5 
+println(i)
+implicit def int2double(x: Int): Double = x.toDouble
+val j:Double = i
+println(j)
+
+
+class PreferredPrompt(val preference: String)
+class PreferredDrink(val preference: String)
+object Greeter {
+  def greet(name: String)(implicit prompt: PreferredPrompt,//greet has implcit values and get only implicit values in carrying parametres
+  drink: PreferredDrink): Unit =  {
+    println("Welcome, "+ name +". The system is ready.")
+    print("But while you work, ")
+    println("why not enjoy a cup of "+ drink.preference +"?")
+    println(prompt.preference)
+  }
+}
+object JoesPrefs {
+  implicit val prompt = new PreferredPrompt("Yes, master> ")
+  implicit val drink = new PreferredDrink("tea")
+}
+
+import JoesPrefs._//you should import JoesPrefs, because prompt and drink are implcit values
+Greeter.greet("Joe")
