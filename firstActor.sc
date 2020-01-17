@@ -1,16 +1,22 @@
-import akka.actor._
+import akka.actor.Actor
+import akka.actor.ActorSystem
+import akka.actor.Props
 
-val system = ActorSystem()
-
-class MyActor extends Actor{
-    override def receive = {
-       case name: String => 
-          println(s"Hello $name")
-          context.stop(self)
-    }
+class HelloActor extends Actor {
+  def receive = {
+    case "hello" => println("hello back at you")
+    case "Привет" => println("Привет, как дела?")
+    case _       => println("huh?")
+  }
 }
 
-val greeter = system.actorOf(Props(classOf[MyActor], this))
-
-greeter ! "Tima"
-system.terminate()
+object Main extends App {
+  val system = ActorSystem("HelloSystem")
+  // default Actor constructor
+  val helloActor = system.actorOf(Props[HelloActor], name = "helloactor")
+  helloActor ! "hello"
+  helloActor ! "buenos dias"
+  helloActor ! "Привет"
+  
+  system.terminate()
+}
